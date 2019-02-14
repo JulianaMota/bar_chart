@@ -6,9 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
   </head>
+  <style>
+    .chart {
+      border: black solid 1px;
+      height: 200px;
+      display: flex;
+      flex-direction: row;
+    }
+    .box {
+      height: 200px;
+      background-color: aqua;
+      width: 30px;
+      border: black solid;
+    }
+  </style>
   <body>
+    <div class="chart"></div>
     <template id="boxes">
       <div class="box"></div>
     </template>
+    <script>
+      "use strick";
+      function createBox() {
+        const clone = document.querySelector("#boxes").content.cloneNode(true);
+        document.querySelector(".chart").appendChild(clone);
+      }
+
+      function makeMoreBoxes() {
+        let counter = 0;
+        createBox();
+        counter++;
+      }
+
+      makeMoreBoxes();
+    </script>
   </body>
 </html>
