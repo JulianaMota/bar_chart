@@ -7,38 +7,138 @@
     <title>Document</title>
   </head>
   <style>
-    .chart {
-      border: black solid 1px;
-      height: 200px;
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+    #chart {
+      background-color: lightpink;
+      height: 20vh;
+      width: 100%;
       display: flex;
       flex-direction: row;
+      align-items: flex-end;
     }
     .box {
-      height: 200px;
+      height: 100%;
       background-color: aqua;
-      width: 30px;
-      border: black solid;
+      width: 20px;
+      z-index: 40;
     }
   </style>
   <body>
-    <div class="chart"></div>
-    <template id="boxes">
+    <div id="chart"></div>
+    <template id="boxes-template">
       <div class="box"></div>
     </template>
     <script>
-      "use strick";
-      function createBox() {
-        const clone = document.querySelector("#boxes").content.cloneNode(true);
-        document.querySelector(".chart").appendChild(clone);
+      "use strict";
+      let array = [
+        20,
+        90,
+        50,
+        30,
+        100,
+        10,
+        60,
+        70,
+        100,
+        80,
+        20,
+        90,
+        50,
+        30,
+        100,
+        10,
+        60,
+        70,
+        100,
+        80,
+        20,
+        90,
+        50,
+        30,
+        100,
+        10,
+        60,
+        70,
+        100,
+        80,
+        20,
+        90,
+        50,
+        30,
+        100,
+        10,
+        60,
+        70,
+        100,
+        80
+      ];
+
+      console.log(array);
+      let number = 0;
+      let maxlength = 40;
+      const counter = [];
+
+      window.addEventListener("DOMContentLoaded", init);
+
+      function init() {
+        createBoxes();
       }
 
-      function makeMoreBoxes() {
-        let counter = 0;
+      function readDataArray(array) {
+        console.log(array);
+        let sizes = mesur;
+        number++;
+
+        if (sizes == [40]) {
+        }
+        console.log(sizes[40]);
+        //const numbers
+        setTimeout(readDataArray, 1000);
+      }
+
+      function createBox(boxlist) {
+        const clone = document
+          .querySelector("#boxes-template")
+          .content.cloneNode(true);
+
+        const box = clone.querySelector(".box");
+        const heightR = createRandomNumbers() + "px";
+        box.style.height = heightR;
+        box.style.width = "100px";
+
+        console.log(heightR);
+        const elm = document.querySelector("#chart").appendChild(clone);
+      }
+
+      function createRandomNumbers() {
+        const size = Math.random() * 100;
+        return size;
+      }
+
+      console.log(number);
+
+      function createBoxes() {
         createBox();
-        counter++;
-      }
+        counter.unshift(number);
+        number++;
+        if (number < 40) {
+          createBoxes();
+        }
 
-      makeMoreBoxes();
+        if (counter.length > maxlength) {
+          //Remove the first one
+          document.querySelector(".box").remove();
+          counter.shift(number);
+        }
+        setTimeout(createBoxes, 2000);
+      }
     </script>
   </body>
 </html>
